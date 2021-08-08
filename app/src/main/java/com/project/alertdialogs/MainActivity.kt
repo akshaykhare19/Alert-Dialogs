@@ -1,5 +1,6 @@
 package com.project.alertdialogs
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var customAlertButton: Button
     private lateinit var defaultAlertButton: Button
+    private lateinit var toastButton: Button
+    private lateinit var cancelButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,21 @@ class MainActivity : AppCompatActivity() {
         defaultAlertButton = findViewById(R.id.default_button)
 
         customAlertButton.setOnClickListener {
+
+            val customAlert = Dialog(this)
+            customAlert.setContentView(R.layout.alert)
+
+//            toastButton = findViewById(R.id.toast_button)
+//            toastButton.setOnClickListener {
+//                Toast.makeText(this, "Seekh Liya Bro!!!", Toast.LENGTH_SHORT).show()
+//            }
+//
+//            cancelButton = findViewById(R.id.cancel_btn)
+//            cancelButton.setOnClickListener {
+//                customAlert.dismiss()
+//            }
+
+            customAlert.show()
 
         }
 
