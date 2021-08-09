@@ -1,8 +1,10 @@
 package com.project.alertdialogs
 
 import android.app.Dialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -12,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var customAlertButton: Button
     private lateinit var defaultAlertButton: Button
-    private lateinit var toastButton: Button
-    private lateinit var cancelButton: Button
+//    private lateinit var toastButton: Button
+//    private lateinit var cancelButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +28,19 @@ class MainActivity : AppCompatActivity() {
 
             val customAlert = Dialog(this)
             customAlert.setContentView(R.layout.alert)
+            customAlert.setCancelable(false)
 
-//            toastButton = findViewById(R.id.toast_button)
-//            toastButton.setOnClickListener {
-//                Toast.makeText(this, "Seekh Liya Bro!!!", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            cancelButton = findViewById(R.id.cancel_btn)
-//            cancelButton.setOnClickListener {
-//                customAlert.dismiss()
-//            }
+
+            val toastButton = customAlert.findViewById(R.id.toast_button) as Button
+            toastButton.setOnClickListener {
+                Toast.makeText(this, "Seekh Liya Bro!!!", Toast.LENGTH_SHORT).show()
+            }
+
+            val cancelButton = customAlert.findViewById(R.id.cancel_btn) as Button
+            cancelButton.setOnClickListener {
+                customAlert.dismiss()
+            }
+
 
             customAlert.show()
 
@@ -61,6 +66,9 @@ class MainActivity : AppCompatActivity() {
             builder.setNeutralButton("Having fun!") { dialog, _ ->
                 Toast.makeText(this, "I'm glad to know that!!!", Toast.LENGTH_SHORT).show()
             }
+
+            //to avoid removal of dialog box on clicking outside the dialog UI
+            builder.setCancelable(false)
 
             val defaultDialog = builder.create()
             defaultDialog.show()
